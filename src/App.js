@@ -1,7 +1,10 @@
 import { Component } from "react";
 
-import logo from "./logo.svg";
 import "./App.css";
+import Calculator from "./components/calculator/calculator.component";
+import CounterApp from "./components/counter-app/counter-app.component";
+import Quotes from "./components/quotes/quotes.component";
+import Weather from "./components/weather/weather.component";
 
 class App extends Component {
   constructor() {
@@ -9,33 +12,61 @@ class App extends Component {
 
     this.state = {
       counter: 0,
-
       buttons: [
-        { button: "7" },
-        { button: "8" },
-        { button: "9" },
         { button: "/" },
-        { button: "4" },
-        { button: "5" },
-        { button: "6" },
-        { button: "*" },
         { button: "1" },
         { button: "2" },
         { button: "3" },
+        { button: "*" },
+        { button: "4" },
+        { button: "5" },
+        { button: "6" },
         { button: "-" },
+        { button: "7" },
+        { button: "8" },
+        { button: "9" },
+        { button: "+" },
         { button: "." },
         { button: "0" },
         { button: "=" },
-        { button: "+" },
       ],
-
       display: "",
-      result: null,
       quote: [],
+      weather: {},
+      city: "",
     };
   }
 
-  componentDidMount() {
+  addToCounter = () => {
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1,
+    }));
+  };
+
+  substractFromCounter = () => {
+    this.setState((prevState) => ({
+      counter: prevState.counter - 1,
+    }));
+  };
+
+  isButtonEquals = (button) => {
+    button.button !== "="
+      ? this.setState((prevState) => ({
+          display: prevState.display + button.button,
+        }))
+      : this.setState((prevState) => ({
+          // eslint-disable-next-line
+          display: eval(prevState.display),
+        }));
+  };
+
+  reset = () => {
+    this.setState({
+      display: "",
+    });
+  };
+
+  fetchQuote = () => {
     fetch("https://api.api-ninjas.com/v1/quotes?", {
       method: "GET",
       headers: {
@@ -48,113 +79,73 @@ class App extends Component {
           return { quote: quotes };
         })
       );
+  };
+
+  fetchWeather = () => {
+    fetch("https://api.api-ninjas.com/v1/weather?city=" + this.state.city, {
+      method: "GET",
+      headers: {
+        "X-Api-Key": "4rCOiS4lvGne0vra5FpkdA==Oq9GlSDTVGa73u8i",
+      },
+    })
+      .then((response) => response.json())
+      .then((weather) => {
+        this.setState(() => {
+          return { weather };
+        });
+      });
+  };
+
+  componentDidMount() {
+    this.fetchQuote();
   }
 
+  citySearch = (event) => {
+    this.setState({
+      city: event.target.value,
+    });
+  };
+
   render() {
+    const {
+      isButtonEquals,
+      fetchWeather,
+      fetchQuote,
+      citySearch,
+      addToCounter,
+      substractFromCounter,
+      reset,
+    } = this;
+    const { quote, weather, counter, buttons, display } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>9 REACT PROJECTS</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+          <h1> REACT PROJECTS</h1>
         <div className="project-container">
-          <div className="counter-app">
-            <h3>1. Counter App</h3>
-            <p className="counter-display">Counter: {this.state.counter}</p>
-            <div className="controls">
-              <button
-                className="button"
-                onClick={() => {
-                  this.setState((prevState) => ({
-                    counter: prevState.counter + 1,
-                  }));
-                }}
-              >
-                Add
-              </button>
-              <button
-                className="button"
-                onClick={() => {
-                  this.setState((prevState) => ({
-                    counter: prevState.counter - 1,
-                  }));
-                }}
-              >
-                Subtract
-              </button>
-            </div>
-          </div>
+          <CounterApp
+            counter={counter}
+            addToCounter={addToCounter}
+            substractFromCounter={substractFromCounter}
+          />
         </div>
         <div className="project-container">
-          <h3>2. Calculator</h3>
-          <div className="display">
-            <input
-              type="text"
-              readonly
-              className="calculator-display"
-              value={this.state.display}
-            />
-          </div>
-          <div className="grid-container">
-            {this.state.buttons.map((button) => {
-              return (
-                <button
-                  onClick={() => {
-                    button.button !== "="
-                      ? this.setState((prevState) => ({
-                          display: prevState.display + button.button,
-                        }))
-                      : this.setState((prevState) => ({
-                          // eslint-disable-next-line
-                          display: eval(prevState.display),
-                        }));
-                  }}
-                  className="grid-item"
-                >
-                  {button.button}
-                </button>
-              );
-            })}
-            <button
-              onClick={() => {
-                this.setState(() => ({
-                  display: "",
-                }));
-              }}
-              className="grid-item"
-            >
-              Reset
-            </button>
-          </div>
+          <Calculator
+            isButtonEquals={isButtonEquals}
+            buttons={buttons}
+            display={display}
+            reset={reset}
+          />
         </div>
 
         <div className="project-container">
-          <h3>3. Random Quote Generator</h3>
-          <div className="quote-container">
-            {this.state.quote.map((quote) => {
-              return <p className="quote-text">{quote.quote}</p>;
-            })}
-            {this.state.quote.map((quote) => {
-              return <p className="quote-author">- {quote.author}</p>;
-            })}
-          </div>
-          <button
-            onClick={()=>{fetch("https://api.api-ninjas.com/v1/quotes?", {
-              method: "GET",
-              headers: {
-                "X-Api-Key": "4rCOiS4lvGne0vra5FpkdA==Oq9GlSDTVGa73u8i",
-              },
-            })
-              .then((response) => response.json())
-              .then((quotes) =>
-                this.setState(() => {
-                  return { quote: quotes };
-                })
-              )}}
-            className="button"
-          >
-            New Quote
-          </button>
+          <Quotes quote={quote} fetchQuote={fetchQuote} />
+        </div>
+        <div className="project-container">
+          <Weather
+            fetchWeather={fetchWeather}
+            citySearch={citySearch}
+            weather={weather}
+          />
         </div>
       </div>
     );

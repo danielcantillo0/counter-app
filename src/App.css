@@ -1,21 +1,20 @@
 .App {
   text-align: center;
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App h1 {
+  margin: 0;
+  color: white;
+  font-size: 4em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h3 {
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
-.App-header,
 .project-container {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,135 +25,3 @@
   border-radius: 10vh;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  gap: 10px;
-}
-
-.grid-item {
-  height: 50px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.grid-item:hover {
-  background-color: #45a049;
-}
-
-.grid-item:nth-child(4n) {
-  background-color: #f39c12;
-}
-
-.grid-item:nth-child(4n):hover {
-  background-color: #e67e22;
-}
-
-.grid-item:nth-child(16) {
-  background-color: #d35400;
-}
-
-.grid-item:nth-child(16):hover {
-  background-color: #e74c3c;
-}
-
-.display {
-  margin-bottom: 20px;
-}
-
-.calculator-display {
-  width: 410px;
-  height: 40px;
-  font-size: 24px;
-  text-align: right;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #444;
-  color: white;
-}
-
-
-.counter-app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-.counter-display {
-  margin-bottom: 20px;
-  background-color: #444;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 24px;
-}
-
-.controls {
-  display: flex;
-  gap: 10px;
-}
-
-.button {
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #45a049;
-}
-
-/* Container for the quote */
-.quote-container {
-  background-color: #f9f9f9;
-  border-left: 5px solid #4caf50; /* Green side border for visual emphasis */
-  margin: 20px;
-  padding: 20px;
-  font-family: 'Georgia', serif; /* Elegant font for quotes */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* Styling for the quote text */
-.quote-text {
-  font-size: 1.5em;
-  font-style: italic;
-  color: #333; /* Dark grey for readability */
-  margin: 0 0 10px 0;
-}
-
-/* Styling for the author text */
-.quote-author {
-  font-size: 1em;
-  font-weight: bold;
-  color: #555; /* Slightly lighter grey for contrast */
-  text-align: right; /* Align author to the right */
-  margin: 0;
-}
