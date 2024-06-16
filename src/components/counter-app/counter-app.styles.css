@@ -1,43 +1,69 @@
 .counter-app {
-    background-color: #2c2c2c; /* Slightly lighter than the background for contrast */
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    margin: 50px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff; /* White text for readability */
-    text-align: center;
-  }
-  
-  .counter-app h3 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  
-  .counter-display {
-    font-size: 1.4em;
-    margin-bottom: 20px;
-  }
-  
-  .controls {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .counter-button {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-    flex: 1;
-    margin: 0 5px;
-  }
-  
-  .counter-button:hover {
-    background-color: #dddddd;
-  }
+  background-color: #2c2c2c; /* Slightly lighter than the background for contrast */
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ffffff; /* White text for readability */
+  text-align: center;
+}
 
+.counter-app h3 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.counter-display-container {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  font-size: 3em;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-display {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.counter-display.plus {
+  transform: translateY(-10px);
+  opacity: 0.8;
+}
+
+.counter-display.minus {
+  transform: translateY(10px);
+  opacity: 0.8;
+}
+
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.counter-button:hover {
+  background-color: #dddddd;
+}

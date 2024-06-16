@@ -1,26 +1,22 @@
 import { Component } from "react";
-import './counter-app.styles.css'
+import "./counter-app.styles.css";
 
 class CounterApp extends Component {
-  
   render() {
-    const { counter, addToCounter, substractFromCounter } = this.props;
+    const { counter, addToCounter, substractFromCounter, animation } = this.props;
     return (
       <div className="counter-app">
-        <h3>Counter App</h3>
-        <p className="counter-display">Counter: {counter}</p>
+        <h3>Click Counter</h3>
+        <div className="counter-display-container">
+          <div className={`counter-display ${animation}`}>{counter}</div>
+        </div>
+
         <div className="controls">
-          <button
-            className="counter-button"
-            onClick={addToCounter}
-          >
-            Add
+          <button className="counter-button" onClick={substractFromCounter}>
+            -
           </button>
-          <button
-            className="counter-button"
-            onClick={substractFromCounter}
-          >
-            Subtract
+          <button className="counter-button" onClick={addToCounter}>
+            +
           </button>
         </div>
       </div>

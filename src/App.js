@@ -12,23 +12,34 @@ class App extends Component {
 
     this.state = {
       counter: 0,
+      animation: "",
       buttons: [
-        { button: "/" },
-        { button: "1" },
-        { button: "2" },
-        { button: "3" },
-        { button: "*" },
+        { button: "+/-" },
+        { button: "CE" },
+        { button: "C" },
+
+        { button: "<-" },
+        { button: "7" },
+        { button: "8" },
+        { button: "9" },
+
+        { button: "X" },
+
         { button: "4" },
         { button: "5" },
         { button: "6" },
         { button: "-" },
-        { button: "7" },
-        { button: "8" },
-        { button: "9" },
+
+        { button: "1" },
+        { button: "2" },
+        { button: "3" },
         { button: "+" },
         { button: "." },
+
         { button: "0" },
+
         { button: "=" },
+        { button: "÷" },
       ],
       display: "",
       quote: [],
@@ -38,33 +49,60 @@ class App extends Component {
   }
 
   addToCounter = () => {
-    this.setState((prevState) => ({
-      counter: prevState.counter + 1,
-    }));
+    this.setState(
+      (prevState) => ({
+        counter: prevState.counter + 1,
+        animation: "plus",
+      }),
+      () => {
+        setTimeout(() => {
+          this.setState(() => ({ animation: "" }));
+        }, 200);
+      }
+    );
   };
 
   substractFromCounter = () => {
-    this.setState((prevState) => ({
-      counter: prevState.counter - 1,
-    }));
+    this.setState(
+      (prevState) => ({
+        counter: prevState.counter - 1,
+        animation: "minus",
+      }),
+      () => {
+        setTimeout(() => {
+          this.setState(() => ({ animation: "" }));
+        }, 200);
+      }
+    );
   };
 
-  isButtonEquals = (button) => {
-    button.button !== "="
-      ? this.setState((prevState) => ({
-          display: prevState.display + button.button,
-        }))
-      : this.setState((prevState) => ({
+
+
+  handleCalcButton = (button) => {
+    switch (button.button) {
+      case "=":
+        return this.setState((prevState) => ({
           // eslint-disable-next-line
           display: eval(prevState.display),
         }));
+
+      case "CE":
+        return this.setState({
+          display: "",
+        });
+
+      case "C":
+        return this.setState({
+          display: "",
+        });  
+
+      default:
+        return this.setState((prevState) => ({
+          display: prevState.display + button.button,
+        }));
+    }
   };
 
-  reset = () => {
-    this.setState({
-      display: "",
-    });
-  };
 
   fetchQuote = () => {
     fetch("https://api.api-ninjas.com/v1/quotes?", {
@@ -108,32 +146,31 @@ class App extends Component {
 
   render() {
     const {
-      isButtonEquals,
       fetchWeather,
       fetchQuote,
       citySearch,
       addToCounter,
       substractFromCounter,
-      reset,
+      handleCalcButton,
     } = this;
-    const { quote, weather, counter, buttons, display } = this.state;
+    const { quote, weather, counter, buttons, display, animation } = this.state;
 
     return (
       <div className="App">
-          <h1> REACT PROJECTS</h1>
+        <h1> REACT PROJECTS</h1>
         <div className="project-container">
           <CounterApp
             counter={counter}
+            animation={animation}
             addToCounter={addToCounter}
             substractFromCounter={substractFromCounter}
           />
         </div>
         <div className="project-container">
           <Calculator
-            isButtonEquals={isButtonEquals}
+            handleCalcButton={handleCalcButton}
             buttons={buttons}
             display={display}
-            reset={reset}
           />
         </div>
 

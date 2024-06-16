@@ -3,9 +3,9 @@ import './calculator.styles.css'
 
 class Calculator extends Component {
   render() {
-    const {buttons, display, isButtonEquals, reset } = this.props;
+    const {buttons, display, handleCalcButton } = this.props;
     return (
-      <>
+      <div className="calculator-container">
         <h3>Calculator</h3>
         <div className="display">
           <input
@@ -20,21 +20,15 @@ class Calculator extends Component {
           {buttons.map((button) => {
             return (
               <button
-                onClick={() => isButtonEquals(button)}
+                onClick={() => handleCalcButton(button)}
                 className="grid-item"
               >
                 {button.button}
               </button>
             );
           })}
-          <button
-            onClick={reset}
-            className="grid-item"
-          >
-            Reset
-          </button>
         </div>
-      </>
+      </div>
     );
   }
 }
