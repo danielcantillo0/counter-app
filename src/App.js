@@ -82,7 +82,8 @@ class App extends Component {
           }));
         } else {
           return this.setState((prevState) => ({
-            display: prevState.display * (-1), calc: `-(${prevState.display})`,
+            display: prevState.display * -1,
+            calc: `-(${prevState.display})`,
           }));
         }
 
@@ -145,7 +146,6 @@ class App extends Component {
             clear: 0,
           });
         }
-        
 
       default:
         return this.setState((prevState) => ({
