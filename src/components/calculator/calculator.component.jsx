@@ -3,11 +3,18 @@ import './calculator.styles.css'
 
 class Calculator extends Component {
   render() {
-    const {buttons, display, handleCalcButton } = this.props;
+    const {buttons, display, handleCalcButton, calc, operator } = this.props;
     return (
       <div className="calculator-container">
         <h3>Calculator</h3>
         <div className="display">
+        { calc && <input
+            type="text"
+            readOnly
+            className="calculator-mini-display"
+            value={calc+operator}
+            placeholder="0"
+          /> }
           <input
             type="text"
             readOnly

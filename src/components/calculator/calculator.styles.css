@@ -9,7 +9,6 @@
   text-align: center;
 }
 
-
 .display {
   margin-bottom: 20px;
 }
@@ -46,4 +45,17 @@
 
 .grid-item:hover {
   background-color: #dddddd;
+}
+
+.calculator-mini-display {
+  width: 300px;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a3a3a; /* Slightly different shade for contrast */
+  color: #b0b0b0; /* Slightly different color for contrast */
+  text-align: right;
+  margin-bottom: 5px; /* Space between mini display and main display */
+  display: block;
 }

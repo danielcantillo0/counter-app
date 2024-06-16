@@ -17,30 +17,27 @@ class App extends Component {
         { button: "+/-" },
         { button: "CE" },
         { button: "C" },
-
         { button: "<-" },
         { button: "7" },
         { button: "8" },
         { button: "9" },
-
-        { button: "X" },
-
+        { button: "x" },
         { button: "4" },
         { button: "5" },
         { button: "6" },
         { button: "-" },
-
         { button: "1" },
         { button: "2" },
         { button: "3" },
         { button: "+" },
         { button: "." },
-
         { button: "0" },
-
         { button: "=" },
         { button: "÷" },
       ],
+      calc: "",
+      clear: 0,
+      operator: "",
       display: "",
       quote: [],
       weather: {},
@@ -76,25 +73,79 @@ class App extends Component {
     );
   };
 
-
-
   handleCalcButton = (button) => {
     switch (button.button) {
+      case "+/-":
+        if (this.state.display > 0) {
+          return this.setState((prevState) => ({
+            display: "-" + prevState.display,
+          }));
+        } else {
+          return this.setState((prevState) => ({
+            display: prevState.display * (-1), calc: `-(${prevState.display})`,
+          }));
+        }
+
+      case "<-":
+        return this.setState((prevState) => ({
+          display: prevState.display.slice(0, -1),
+        }));
+      case "+":
+        return this.setState((prevState) => ({
+          calc: prevState.display,
+          operator: "+",
+          display: "",
+        }));
+      case "-":
+        return this.setState((prevState) => ({
+          calc: prevState.display,
+          operator: "-",
+          display: "",
+        }));
+
+      case "x":
+        return this.setState((prevState) => ({
+          calc: prevState.display,
+          operator: "*",
+          display: "",
+        }));
+
+      case "÷":
+        return this.setState((prevState) => ({
+          calc: prevState.display,
+          operator: "/",
+          display: "",
+        }));
       case "=":
         return this.setState((prevState) => ({
           // eslint-disable-next-line
-          display: eval(prevState.display),
+          display: eval(
+            prevState.calc + prevState.operator + prevState.display
+          ),
+          calc: prevState.calc + prevState.operator + prevState.display,
+          operator: "",
+          clear: 1,
         }));
-
-      case "CE":
-        return this.setState({
-          display: "",
-        });
 
       case "C":
         return this.setState({
           display: "",
-        });  
+          calc: "",
+        });
+
+      case "CE":
+        if (this.state.clear === 0) {
+          return this.setState({
+            display: "",
+          });
+        } else {
+          return this.setState({
+            display: "",
+            calc: "",
+            clear: 0,
+          });
+        }
+        
 
       default:
         return this.setState((prevState) => ({
@@ -102,7 +153,6 @@ class App extends Component {
         }));
     }
   };
-
 
   fetchQuote = () => {
     fetch("https://api.api-ninjas.com/v1/quotes?", {
@@ -153,7 +203,16 @@ class App extends Component {
       substractFromCounter,
       handleCalcButton,
     } = this;
-    const { quote, weather, counter, buttons, display, animation } = this.state;
+    const {
+      quote,
+      weather,
+      counter,
+      buttons,
+      display,
+      animation,
+      calc,
+      operator,
+    } = this.state;
 
     return (
       <div className="App">
@@ -171,6 +230,8 @@ class App extends Component {
             handleCalcButton={handleCalcButton}
             buttons={buttons}
             display={display}
+            calc={calc}
+            operator={operator}
           />
         </div>
 
