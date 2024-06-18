@@ -1,35 +1,44 @@
-
 import "./App.css";
-import Calculator from "./components/calculator/calculator.component";
+import ProjectList from "./components/project-list/project-list.component";
 import CounterApp from "./components/counter-app/counter-app.component";
+import Calculator from "./components/calculator/calculator.component";
 import Quotes from "./components/quotes/quotes.component";
 import Weather from "./components/weather/weather.component";
-import ProjectList from "./components/project-list/project-list.component";
+import { useState } from "react";
 
-const App = ()=> {
+const App = () => {
+  const [projectJsx, setProjectJsx] = useState(null);
+  const handleSelector = (project) => {
+    switch (project) {
+      case "counter":
+        setProjectJsx(<CounterApp />);
+        break;
 
-    return (
-      <div className="App">
-        
-        <div className="project-container">
-          <h1> REACT PROJECTS</h1>
-          <ProjectList />
-        </div>
-       
-        <div className="project-container">
-          <CounterApp />
-        </div>
-        <div className="project-container">
-          <Calculator />
-        </div>
-        <div className="project-container">
-          <Quotes />
-        </div>
-        <div className="project-container">
-          <Weather />
-        </div>
+      case "calculator":
+        setProjectJsx(<Calculator />);
+        break;
+
+      case "quotes":
+        setProjectJsx(<Quotes />);
+        break;
+
+      case "weather":
+        setProjectJsx(<Weather />);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  return (
+    <div className="App">
+      <div className="project-container">
+        <h1> REACT PROJECTS</h1>
+        <ProjectList handleSelector={handleSelector} projectJsx={projectJsx} />
       </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default App;

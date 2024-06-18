@@ -4,7 +4,7 @@
   align-items: center;
   width: 75%;
   height: 450px;
-  background-color: goldenrod;
+
   color: black;
   margin: 0;
   border-radius: 20px;
@@ -14,4 +14,27 @@
 .project-selector {
   padding: 30px 30px;
   margin: auto;
+  border: solid;
+  border-color: black;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  user-select: none;
+}
+
+.project-selector:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+  background-color: aquamarine;
+}
+
+.project-selector:active {
+  transform: scale(0.975);
+}
+
+.projectlist-container {
+  width: 125vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: goldenrod;
 }

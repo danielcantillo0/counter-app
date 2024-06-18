@@ -1,34 +1,45 @@
+.quotes-container {
+  background-color: #2c2c2c; /* Slightly lighter than the background for contrast */
+  border-radius: 10px;
+  padding: 20px;
+  margin: -50px 20px 40px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ffffff; /* White text for readability */
+  text-align: center;
+}
+
 .quote-container {
-    background-color: #2c2c2c;
-    border-radius: 10px;
-    padding: 20px;
-    width: 60%;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .quote-text, .quote-author {
-    font-size: 1.2em;
-    margin: 10px 0;
-    text-align: center;
-  }
-  
-  .quote-author {
-    color: #cccccc; /* Slightly lighter color for author text */
-  }
-  
-  .quote-button {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .quote-button:hover {
-    background-color: #dddddd;
-  }
+  background-color: #0a0a0a;
+  border-radius: 10px;
+  padding: 20px;
+  width: 60%;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quote-text,
+.quote-author {
+  font-size: 1.2em;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.quote-author {
+  color: #cccccc; /* Slightly lighter color for author text */
+}
+
+.quote-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.quote-button:hover {
+  background-color: #dddddd;
+}

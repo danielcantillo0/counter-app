@@ -8,14 +8,16 @@
 .App h1 {
   margin: 0;
   color: white;
-  font-size: 4em;
+  font-size: 2em;
   font-family: "Permanent Marker";
+  user-select: none;
 }
 
 h3 {
   margin-top: 5px;
   font-size: 2em;
   margin-bottom: 20px;
+  user-select: none;
 }
 
 .project-container {
@@ -27,4 +29,3 @@ h3 {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-

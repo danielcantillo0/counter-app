@@ -1,17 +1,23 @@
 import "./project-list.styles.css";
 
-const ProjectList = () => {
+const ProjectList = ({ handleSelector, projectJsx }) => {
   const projects = ["counter", "calculator", "quotes", "weather"];
 
   return (
-    <div className="selector-container">
-      {projects.map((project) => {
-        return (
-          <button className="project-selector">
-            {project.toLocaleUpperCase()}
-          </button>
-        );
-      })}
+    <div className="projectlist-container">
+      <div className="selector-container">
+        {projects.map((project) => {
+          return (
+            <div
+              onClick={() => handleSelector(project)}
+              className="project-selector"
+            >
+              {project.toLocaleUpperCase()}
+            </div>
+          );
+        })}
+      </div>
+      {projectJsx}
     </div>
   );
 };
