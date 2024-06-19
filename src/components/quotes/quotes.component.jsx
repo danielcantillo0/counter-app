@@ -12,7 +12,7 @@ const Quotes = () => {
       method: "GET",
       headers: {
         // eslint-disable-next-line
-        "X-Api-Key": "${{secrets.API_KEY}}",
+        "X-Api-Key": "${{secret.API_KEY}}",
       },
     })
       .then((response) => response.json())
