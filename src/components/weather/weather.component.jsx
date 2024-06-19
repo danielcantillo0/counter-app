@@ -13,7 +13,8 @@ const Weather = () => {
     fetch("https://api.api-ninjas.com/v1/weather?city=" + city, {
       method: "GET",
       headers: {
-        "X-Api-Key": "4rCOiS4lvGne0vra5FpkdA==Oq9GlSDTVGa73u8i",
+        // eslint-disable-next-line
+        "X-Api-Key": "${{secret.API_KEY}}",
       },
     })
       .then((response) => response.json())
