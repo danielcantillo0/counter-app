@@ -1,7 +1,7 @@
 import "./project-list.styles.css";
 
 const ProjectList = ({ handleSelector, projectJsx }) => {
-  const projects = ["counter", "calculator", "quotes", "weather"];
+  const projects = ["counter", "calculator", "quotes"];
 
   return (
     <div className="projectlist-container">

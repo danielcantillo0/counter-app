@@ -3,7 +3,6 @@ import ProjectList from "./components/project-list/project-list.component";
 import CounterApp from "./components/counter-app/counter-app.component";
 import Calculator from "./components/calculator/calculator.component";
 import Quotes from "./components/quotes/quotes.component";
-import Weather from "./components/weather/weather.component";
 import { useState } from "react";
 
 const App = () => {
@@ -20,10 +19,6 @@ const App = () => {
 
       case "quotes":
         setProjectJsx(<Quotes />);
-        break;
-
-      case "weather":
-        setProjectJsx(<Weather />);
         break;
 
       default:

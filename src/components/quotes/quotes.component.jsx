@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import BasicQuotes from "./basicQuotes.component";
 import "./quotes.styles.css";
+import withAsync from "../withAsync/withAsync";
 
 const Quotes = () => {
-  const [quote, setQuote] = useState([])
+  const [quote, setQuote] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
   const fetchQuote = () => {
     fetch("https://api.api-ninjas.com/v1/quotes?", {
       method: "GET",
@@ -11,26 +15,24 @@ const Quotes = () => {
       },
     })
       .then((response) => response.json())
-      .then((quotes) => setQuote(quotes));
+      .then((quotes) => {
+        setQuote(quotes);
+        setIsLoading(false);
+      })
+      .catch(setError);
   };
-  
-  useEffect(() => fetchQuote, [])
+
+  useEffect(() => fetchQuote, []);
+
+  const AsyncQuotes = withAsync(BasicQuotes);
 
   return (
-    <div className="quotes-container">
-      <h3>Random Quote Generator</h3>
-      <div className="quote-container">
-        {quote.map((quote) => {
-          return <p className="quote-text">{quote.quote}</p>;
-        })}
-        {quote.map((quote) => {
-          return <p className="quote-author">- {quote.author}</p>;
-        })}
-      </div>
-      <button onClick={fetchQuote} className="quote-button">
-        New Quote
-      </button>
-    </div>
+    <AsyncQuotes
+      quote={quote}
+      isLoading={isLoading}
+      fetchQuote={fetchQuote}
+      error={error}
+    />
   );
 };
 
