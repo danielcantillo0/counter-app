@@ -6,12 +6,13 @@ import withAsync from "../withAsync/withAsync";
 const Quotes = () => {
   const [quote, setQuote] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const fetchQuote = () => {
     fetch("https://api.api-ninjas.com/v1/quotes?", {
       method: "GET",
       headers: {
-        "X-Api-Key": "4rCOiS4lvGne0vra5FpkdA==Oq9GlSDTVGa73u8i",
+        // eslint-disable-next-line
+        "X-Api-Key": "${{secrets.API_KEY}}",
       },
     })
       .then((response) => response.json())
